@@ -52,11 +52,6 @@ function App() {
         setIndex(index + 1);
       }
     }
-    console.log("valuebox = " + valuebox);
-    console.log("inputbox = " + inputbox);
-    console.log("index = " + index);
-    console.log("arr = " + arr);
-    console.log("==================");
   };
 
   return (
