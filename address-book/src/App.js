@@ -1,53 +1,32 @@
 import './App.css';
 import React, { useState } from 'react';
 import MemberList from './component/memberList';
-import MemberInfo from './component/memberInfo';
-import MemberSearch from './component/memberSearch';
-import Members from './members';
+import MemberDetail from './component/memberDetail';
 
 function App() {
 
-  // 선택한 Member
+  // 선택한 Member 저장 변수
   const [selectedList, setSelectedList] = useState();
-  // 검색창에 입력한 값 저장
+  // 검색어 저장 변수
   const [searchValue, setSearchValue] = useState();
-  // 검색창 변경 이벤트
+  // Member 클릭 이벤트
+  const selectedMember = (selectedList) => {
+    setSelectedList(selectedList);
+  };
+  // 검색어 변경 이벤트
   const searchValueChange = (searchValue) => {
+    // 검색어 입력시 검색어 저장
     setSearchValue(searchValue);
-    setSelectedList(null);
-  }
+    // 검색시 상세정보 초기화
+    setSelectedList();
+  };
 
   return (
     <div class="container">
       <h1 class="subject">Members</h1>
       <div class="contact-wrap">
-        <div class="col left">
-          <MemberSearch value={searchValue} searchValueChange={searchValueChange} />
-          <div class="contact-list">
-            <ul>
-              {Members.filter((list) => !searchValue || list.name.includes(searchValue)).map((list) => (
-                <li key={list.id}>
-                  <button type="button" onClick={() => setSelectedList(list)} className={list === selectedList ? "selected" : ""}>{list.name}</button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div class="col right">
-          <div class="details">
-            {selectedList ? (
-              <ul class="info">
-                <li>이름: {selectedList.name}</li>
-                <li>부서: {selectedList.dept}</li>
-                <li>휴대폰: {selectedList.phone}</li>
-                <li>메일: {selectedList.mail}</li>
-              </ul>
-            ) : (
-              <p class="emptyset">정보가 없습니다.</p>
-            )}
-          </div>
-        </div>
+        <MemberList searchValue={searchValue} searchValueChange={searchValueChange} selectedMember={selectedMember} />
+        <MemberDetail selectedList={selectedList} />
       </div>
     </div>
   );
