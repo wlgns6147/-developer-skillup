@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div class="container">
-      <h1 class="subject">Members</h1>
+      <h1 class="subject">Members-Recoil</h1>
       <div class="contact-wrap">
         <RecoilRoot>
           <div class="col left">
