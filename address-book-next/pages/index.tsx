@@ -4,8 +4,6 @@ import MemberSearch from '../components/memberSearch';
 import MemberList from '../components/memberList';
 import MemberDetail from '../components/memberDetail';
 
-// import '../styles/index.css';
-
 export default function Home() {
   return (
     <div className="container">
