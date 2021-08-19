@@ -2,8 +2,8 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { selectedList } from '../atom/atom'
 
-export default function MemberDetail() {
-
+// Member 상세 정보
+const MemberDetail = () => {
     // 선택한 Member 저장 변수
     const selectedData = useRecoilValue(selectedList);
 
@@ -24,3 +24,5 @@ export default function MemberDetail() {
         </div>
     );
 };
+
+export default MemberDetail;

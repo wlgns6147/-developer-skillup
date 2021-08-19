@@ -2,8 +2,8 @@ import React from 'react';
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { members, selectedList, searchValue, searchMemberList } from '../atom/atom'
 
-export default function MemberSearch() {
-
+// Member 검색
+const MemberSearch = () => {
     // 검색어 입력시 검색어 저장
     const [search, setSearch] = useRecoilState(searchValue)
     // 검색한 Member 저장 변수
@@ -35,3 +35,5 @@ export default function MemberSearch() {
         </div>
     );
 };
+
+export default MemberSearch;

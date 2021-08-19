@@ -2,8 +2,8 @@ import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { selectedList, searchMemberList } from '../atom/atom'
 
-export default function MemberList() {
-
+// Member 리스트
+const MemberList = () => {
     // 선택한 Member 저장 변수
     const setSel = useSetRecoilState(selectedList);
     // 검색한 Member 저장 변수
@@ -26,3 +26,5 @@ export default function MemberList() {
         </div >
     );
 }
+
+export default MemberList;
