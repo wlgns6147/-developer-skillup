@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { Contact } from './entities/contacts.entity';
 
@@ -27,7 +27,7 @@ export class ContactsController {
      * @return
      */
     @FormUrlEncoded
-    @PATCH("/posts/1")
+    @Patch("/posts/1")
     Call<Data> patchData(@Field("title") String title);
 
 

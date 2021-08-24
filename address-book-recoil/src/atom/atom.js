@@ -1,10 +1,11 @@
+//  atom은 하나의 상태를 관리하는 것
 import { atom } from "recoil";
 import Members from "../members";
 
 // 선택한 Member 저장 변수
 export const selectedList = atom({
-  key: "selectedList",
-  default: "",
+  key: 'selectedList',
+  default: '',
 });
 
 // 검색어 저장 변수

@@ -11,6 +11,7 @@ function App() {
     <div class="container">
       <h1 class="subject">Members-Recoil</h1>
       <div class="contact-wrap">
+        {/* RecoilRoot로 감싸줘야 상태관리 가능. Redux의 Provider 같은 느낌 */}
         <RecoilRoot>
           <div class="col left">
             {/* Member 검색 */}
