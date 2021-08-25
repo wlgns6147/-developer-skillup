@@ -33,12 +33,12 @@ export const members = atom<IMembers[]>({
 });
 
 // Members Selector
-export const memberListSelector = selector({
+export const memberListSelector = selector<IMembers[]>({
   key: 'memberListSelector',
   get: ({ get }) => {
     const searchText = get(searchValue);
     const list = get(members);
-    return list.filter((contact) => contact.name.includes(searchText));
+    return list.filter((list) => list.name.includes(searchText));
   },
 });
 

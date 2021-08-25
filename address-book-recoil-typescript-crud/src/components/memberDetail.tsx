@@ -1,7 +1,7 @@
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
-import { selectedList, members, changeScreen, addMemberData } from '../data/atom';
-import { IMembers } from '../interface/imembers';
-import { editData, addData, deleteData } from '../data/members';
+import { selectedList, members, changeScreen, addMemberData, searchValue, searchMemberList } from '../atoms/atom';
+import { IMembers } from '../types/imembers';
+import { editData, addData, deleteData } from '../atoms/members';
 
 function MemberDetail() {
   // 선택한 Member 저장 변수
@@ -14,15 +14,18 @@ function MemberDetail() {
   const [changeScn, setchangeScn] = useRecoilState<string>(changeScreen);
   // input값 처리
   const [inputValues, setInputValues] = useRecoilState<IMembers | undefined>(addMemberData);
+  // 검색어 입력시 검색어 저장
+  const [search, setSearch] = useRecoilState<string>(searchValue);
+  const setSearchList = useSetRecoilState<IMembers[]>(searchMemberList);
 
   const inputChange = (name: string, inputText: string, changeScn: string) => {
     if (changeScn === 'edit') {
       setSelectedData({
-        ...selectedData,
+        ...selectedData!,
         [name]: inputText,
       });
     } else if (changeScn === 'add') {
-      setInputValues({ ...inputValues, [name]: inputText });
+      setInputValues({ ...inputValues!, [name]: inputText });
     }
   };
 
@@ -36,22 +39,30 @@ function MemberDetail() {
     setList(temp);
     // Detail 화면 초기화
     setchangeScn('detail');
+    // 검색목록 업데이트
+    setSearchList(temp);
+    // 검색어 초기화
+    setSearch('');
   };
 
   // 저장 버튼 클릭 이벤트
   const onClicksaveButton = (text: string) => {
-    let temp;
+    let temp: any;
     if (text === 'edit') {
-      temp = editData(selectedData.id, selectedData.name, selectedData.dept, selectedData.phone, selectedData.mail);
+      temp = editData(selectedData!.id, selectedData!.name, selectedData!.dept, selectedData!.phone, selectedData!.mail);
       alert('수정 완료.');
     } else if (text === 'add') {
-      temp = addData(inputValues.name, inputValues.dept, inputValues.phone, inputValues.mail);
+      temp = addData(inputValues!.name, inputValues!.dept, inputValues!.phone, inputValues!.mail);
       alert('추가되었습니다.');
     }
     // 수정/추가 후 List 세팅
     setList(temp);
     // Detail 화면 초기화
     setchangeScn('detail');
+    // 검색목록 업데이트
+    setSearchList(temp);
+    // 검색어 초기화
+    setSearch('');
   };
 
   return (
@@ -60,16 +71,16 @@ function MemberDetail() {
         {changeScn === 'add' ? (
           <ul className="edit">
             <li>
-              이름 : <input name="name" value={inputValues.name} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
+              이름 : <input name="name" value={inputValues?.name} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
             </li>
             <li>
-              부서 : <input name="dept" value={inputValues.dept} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
+              부서 : <input name="dept" value={inputValues?.dept} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
             </li>
             <li>
-              휴대폰 : <input name="phone" value={inputValues.phone} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
+              휴대폰 : <input name="phone" value={inputValues?.phone} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
             </li>
             <li>
-              메일 : <input name="mail" value={inputValues.mail} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
+              메일 : <input name="mail" value={inputValues?.mail} onChange={(e) => inputChange(e.target.name, e.target.value, 'add')} />
             </li>
             <button className="saveButton" onClick={() => onClicksaveButton('add')}>
               저장

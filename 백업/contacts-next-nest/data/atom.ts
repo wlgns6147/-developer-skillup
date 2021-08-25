@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState } from 'recoil';
+import { atom, selector } from 'recoil';
 import { IMembers } from '../interface/imembers';
 import ApiService from '../components/apiService';
 
