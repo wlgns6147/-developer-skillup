@@ -1,5 +1,5 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { selectedList, changeScreen, searchMemberList, members } from '../atoms/atom';
+import { selectedList, changeScreen, searchMemberList } from '../atoms/atom';
 import { IMembers } from '../types/imembers';
 
 function MemberList() {

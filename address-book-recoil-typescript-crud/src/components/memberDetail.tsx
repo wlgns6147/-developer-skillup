@@ -15,7 +15,7 @@ function MemberDetail() {
   // input값 처리
   const [inputValues, setInputValues] = useRecoilState<IMembers | undefined>(addMemberData);
   // 검색어 입력시 검색어 저장
-  const [search, setSearch] = useRecoilState<string>(searchValue);
+  const setSearch = useSetRecoilState<string>(searchValue);
   const setSearchList = useSetRecoilState<IMembers[]>(searchMemberList);
 
   const inputChange = (name: string, inputText: string, changeScn: string) => {

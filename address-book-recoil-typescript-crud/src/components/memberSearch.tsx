@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { selectedList, searchValue, changeScreen, addMemberData, members, searchMemberList } from '../atoms/atom';
 import { IMembers } from '../types/imembers';
